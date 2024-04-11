@@ -263,8 +263,8 @@ namespace IDHIPlugins
 
             var lines = new StringBuilder();
 #if DEBUG
-            var calllingMethod = Utilities.CallingMethod();
-            lines.AppendLine($"[PrintData] Calling Method {calllingMethod}.");
+            var callingMethod = Utilities.CallingMethod();
+            lines.AppendLine($"[PrintData] Calling Method {callingMethod}.");
 #endif
             foreach (var item in MoveData)
             {
