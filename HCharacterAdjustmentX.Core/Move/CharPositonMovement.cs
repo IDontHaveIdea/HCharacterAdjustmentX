@@ -8,7 +8,6 @@ using UnityEngine;
 using BepInEx.Logging;
 
 using IDHIUtils;
-using static FaceScreenShot;
 
 
 namespace IDHIPlugins

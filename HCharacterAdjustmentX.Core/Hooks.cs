@@ -1,7 +1,6 @@
 ﻿//
 // Hooks for HCharaAdjustmentX
 //
-using System;
 
 using UnityEngine;
 
@@ -9,10 +8,7 @@ using H;
 
 using HarmonyLib;
 
-using KKAPI.MainGame;
-
 using IDHIUtils;
-
 
 
 namespace IDHIPlugins

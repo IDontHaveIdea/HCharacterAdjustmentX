@@ -3,17 +3,15 @@
 //
 // Ignore Spelling: Recalc
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 using UnityEngine;
 
-using ExtensibleSaveFormat;
 using KKAPI;
 using KKAPI.Chara;
 
 using IDHIUtils;
+
 
 namespace IDHIPlugins
 {

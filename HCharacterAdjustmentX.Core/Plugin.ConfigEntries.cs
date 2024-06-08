@@ -8,8 +8,6 @@ using BepInEx.Logging;
 
 using KKAPI.Utilities;
 
-//using IDHIUtils;
-
 
 namespace IDHIPlugins
 {

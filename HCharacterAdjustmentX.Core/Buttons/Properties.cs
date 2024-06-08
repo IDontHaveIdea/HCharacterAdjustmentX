@@ -7,6 +7,7 @@ using UnityEngine;
 
 using static IDHIPlugins.HCharaAdjustmentX;
 
+
 namespace IDHIPlugins
 {
     public enum Axis
