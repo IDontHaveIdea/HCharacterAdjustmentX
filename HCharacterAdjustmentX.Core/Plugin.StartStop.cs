@@ -27,14 +27,7 @@ namespace IDHIPlugins
 
         private void OnHProcExit(object s, EventArgs e)
         {
-#if DEBUG
-            //_Log.Info($"[OnHProcExit] Removing patches and disabling HCAX.");
-#endif
             SetControllerEnabled(false);
-            if (HPprocInstance != null)
-            {
-                HPprocInstance = null;
-            }
             if (HProcTraverse != null)
             {
                 HProcTraverse = null;
@@ -48,9 +41,6 @@ namespace IDHIPlugins
             catch (Exception ex) {
                 _Log.Level(LogLevel.Error, $"HCAX0005: {ex}");
             }
-#if DEBUG
-            //_Log.Info($"[OnHProcExit] Removing patches and disabling HCAX OK.");
-#endif
             HProcMonitor.OnExit -= OnHProcExit;
         }
 
@@ -73,7 +63,6 @@ namespace IDHIPlugins
             CharacterType chType;
             // HSceneProc instance will be used later
             HProcObject = instance;
-            HPprocInstance = (HSceneProc)instance;
             HProcTraverse = new HSceneProcTraverse(instance);
 
             // set various flags
@@ -93,15 +82,15 @@ namespace IDHIPlugins
                 chType = (CharacterType)i;
 
                 GetController(HProcTraverse.flags.lstHeroine[i].chaCtrl).Init(
-                    HPprocInstance, chType);
+                    HProcTraverse, chType);
             }
 
             GetController(HProcTraverse.flags.player.chaCtrl).Init(
-                HPprocInstance, CharacterType.Player);
+                HProcTraverse, CharacterType.Player);
 
             // Group move guide off
             HProcTraverse.sprite.axis.tglDraw.isOn = false;
-            HPprocInstance.guideObject.gameObject.SetActive(false);
+            HProcTraverse.guideObject.gameObject.SetActive(false);
         }
 
         /// <summary>
@@ -117,9 +106,6 @@ namespace IDHIPlugins
                     try
                     {
                         GetController(Heroines[i]).enabled = setState;
-#if DEBUG
-                        //_Log.Info($"HCAX0009: Controller {setEnabled(setState)} for {(CharacterType)i}");
-#endif
                     }
                     catch (Exception e)
                     {
@@ -132,9 +118,6 @@ namespace IDHIPlugins
                 try
                 {
                     GetController(Player).enabled = setState;
-#if DEBUG
-                    //_Log.Info($"HCAX0011: Controller {setEnabled(setState)} for Player");
-#endif
                 }
                 catch (Exception e)
                 {

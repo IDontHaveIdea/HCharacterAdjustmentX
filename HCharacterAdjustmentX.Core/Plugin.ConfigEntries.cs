@@ -29,7 +29,7 @@ namespace IDHIPlugins
             // Definition of configuration items
             var sectionKeys = "Keyboard Shortcuts for Guide";
 #if DEBUG
-            //_Log.Info($"HCAX0016: Creating Shortcuts for Characters");
+            // TODO: Guide does not align correctly
             GroupGuide = Config.Bind(
                 section: sectionKeys,
                 key: "Show Group Guide",
@@ -77,17 +77,13 @@ namespace IDHIPlugins
             #endregion Female 2
 
             #region Steps
-#if DEBUG
-            //_Log.Info($"HCAX0017: Creating Shortcuts for Steps");
-#endif
-
             sectionKeys = "Movement Step";
             AdjustmentStep = Config.Bind(
                 section: sectionKeys,
                 key: "Move step amount",
                 defaultValue: 0.01f,
                 configDescription: new ConfigDescription(
-                    description: "Set the step by with to move",
+                    description: "Set the step size to move",
                     acceptableValues: null,
                     tags: new ConfigurationManagerAttributes { Order = 14 }));
             AdjustmentStep.SettingChanged += (_sender, _args) =>
@@ -102,6 +98,8 @@ namespace IDHIPlugins
                 }
             };
 
+#if DEBUG
+            // Rotation without looking for a way to change the pivot not worth it.
             RotationStep = Config.Bind(
                 section: sectionKeys,
                 key: "Rotation step amount",
@@ -115,13 +113,11 @@ namespace IDHIPlugins
                 if (_fRotationStep != RotationStep.Value)
                 {
                     _fRotationStep = RotationStep.Value;
-#if DEBUG
                     //_Log.Info($"HCAX0018: Movement step read in configuration - " +
                     //    $"{RotationStep.Value}");
-#endif
                 }
             };
-
+#endif
             #endregion Steps
         }
 
@@ -166,6 +162,7 @@ namespace IDHIPlugins
 #endif
             };
 
+            // TODO: Verify is this is still used
             DebugPositionInfo = Config.Bind(
                 section: "Debug",
                 key: "Debug positions details.",

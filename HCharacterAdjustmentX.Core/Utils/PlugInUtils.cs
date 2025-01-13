@@ -216,7 +216,7 @@ namespace IDHIPlugins
         /// <param name="instance"></param>
         internal static void InitialPosition()
         {
-            if (HPprocInstance == null)
+            if (HProcTraverse == null)
             {
                 return;
             }
@@ -225,7 +225,7 @@ namespace IDHIPlugins
                 return;
             }
 
-            var heroines = HPprocInstance.flags.lstHeroine;
+            var heroines = HProcTraverse.flags.lstHeroine;
             CTRL ctrl;
 
             for (var i = 0; i < heroines.Count; i++)
@@ -252,19 +252,19 @@ namespace IDHIPlugins
             }
         }
 
-
         /// <summary>
         /// Move characters to saved original position
         /// </summary>
         /// <param name="message"></param>
         internal static void ResetPositionAll()
         {
-            if (HPprocInstance == null)
+            if (HProcTraverse == null)
             {
                 return;
             }
 
-            var heroines = HPprocInstance.flags.lstHeroine;
+            var heroines = HProcTraverse.flags.lstHeroine;
+
             CTRL ctrl;
             for (var i = 0; i < heroines.Count; i++)
             {
@@ -274,8 +274,8 @@ namespace IDHIPlugins
                     ctrl.ResetPosition();
                 }
             }
-            ctrl = GetController(HPprocInstance.flags.player.chaCtrl);
-            if (IsSamePosition(HPprocInstance.flags.player.chaCtrl))
+            ctrl = GetController(HProcTraverse.flags.player.chaCtrl);
+            if (IsSamePosition(HProcTraverse.flags.player.chaCtrl))
             {
                 ctrl.ResetPosition();
             }
@@ -285,15 +285,15 @@ namespace IDHIPlugins
         /// Set new original position for characters if there is a move 
         /// from original position saved
         /// </summary>
-        /// <param name="message"></param>
         internal static void SetOriginalPositionAll()
         {
-            if (HPprocInstance == null)
+            if (HProcTraverse == null)
             {
                 return;
             }
 
-            var heroines = HPprocInstance.flags.lstHeroine;
+            var heroines = HProcTraverse.flags.lstHeroine;
+
             CTRL ctrl;
             for (var i = 0; i < heroines.Count; i++)
             {
@@ -301,14 +301,14 @@ namespace IDHIPlugins
                 ctrl.SetOriginalPosition();
             }
 
-            ctrl = GetController(HPprocInstance.flags.player.chaCtrl);
+            ctrl = GetController(HProcTraverse.flags.player.chaCtrl);
             ctrl.SetOriginalPosition();
         }
 
         internal static void SetALMove(
             HSceneProc.AnimationListInfo _nextAinmInfo)
         {
-            if (HPprocInstance == null)
+            if (HProcTraverse == null)
             {
                 return;
             }
@@ -318,7 +318,7 @@ namespace IDHIPlugins
                 var movement = PlugInUtils
                     .GetAnimationMovement(_nextAinmInfo);
 
-                var heroines = HPprocInstance.flags.lstHeroine;
+                var heroines = HProcTraverse.flags.lstHeroine;
                 CTRL ctrl;
                 for (var i = 0; i < heroines.Count; i++)
                 {
@@ -328,7 +328,7 @@ namespace IDHIPlugins
                         ctrl.ALMovement = movement[(int)Sex.Female];
                     }
                 }
-                ctrl = GetController(HPprocInstance.flags.player.chaCtrl);
+                ctrl = GetController(HProcTraverse.flags.player.chaCtrl);
                 ctrl.ALMovement = movement[(int)Sex.Male];
             }
         }
@@ -353,16 +353,16 @@ namespace IDHIPlugins
         /// <param name="message"></param>
         internal static void RecalcAdjustmentAll()
         {
-            if (HPprocInstance == null)
+            if (HProcTraverse == null)
             {
                 return;
             }
-            var heroines = HPprocInstance.flags.lstHeroine;
+            var heroines = HProcTraverse.flags.lstHeroine;
             for (var i = 0; i < heroines.Count; i++)
             {
                 GetController(heroines[i].chaCtrl).DoRecalc = true;
             }
-            GetController(HPprocInstance.flags.player.chaCtrl).DoRecalc = true;
+            GetController(HProcTraverse.flags.player.chaCtrl).DoRecalc = true;
         }
     }
 }

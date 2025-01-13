@@ -84,24 +84,8 @@ namespace IDHIPlugins
             CharacterApi.RegisterExtraBehaviour<CTRL>(GUID);
         }
 
-#if DEBUG
-        //private void OnEnable()
-        //{
-            //_Log.Info($"HCAX1313: [OnEnabled] Called.");
-        //}
-
-        //private void OnDisable()
-        //{
-            //_Log.Info("HCAX1314: [OnDisabled] Called.");
-        //}
-#endif
-
         private void Start()
         {
-#if DEBUG
-            //_Log.Info("HCAX1315: Start Called.");
-#endif
-
             ConfigEntries();
 
             // Hook to HProcMonitor
@@ -137,11 +121,11 @@ namespace IDHIPlugins
 
             if (chaType == CharacterType.Player)
             {
-                chaControl = HPprocInstance.flags.player?.chaCtrl;
+                chaControl = HProcTraverse.flags.player?.chaCtrl;
             }
             else
             {
-                chaControl = HPprocInstance.flags.lstHeroine[(int)chaType]?.chaCtrl;
+                chaControl = HProcTraverse.flags.lstHeroine[(int)chaType]?.chaCtrl;
             }
 
             return ((chaControl == null) || (chaControl.gameObject == null))

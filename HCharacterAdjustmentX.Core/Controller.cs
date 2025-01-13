@@ -97,11 +97,12 @@ namespace IDHIPlugins
                     if (MoveData.Count == 0)
                     {
 #if DEBUG
-                        //var name = ChaControl.chaFile?.parameter.fullname.Trim()
-                        //    ?? string.Empty;
-                        //_Log.Info($"[SaveData] [{name}] MoveData total is 0 setting "
-                        //    + $"ExtendedData to null(Not Really!).");
+                        var name = ChaControl.chaFile?.parameter.fullname.Trim()
+                            ?? string.Empty;
+                        _Log.Info($"[SaveData] [{name}] MoveData total is 0 setting "
+                            + $"ExtendedData to null(Not Really!).");
 #endif
+                        // TODO: Make sure this is correct
                         //SetExtendedData(null);
                     }
                     else
@@ -109,14 +110,14 @@ namespace IDHIPlugins
                         SetExtendedData(MoveData.Save());
                     }
                 }
+#if DEBUG
                 else
                 {
-#if DEBUG
-                    //var name = ChaControl.chaFile?.parameter.fullname.Trim()
-                    //    ?? string.Empty;
-                    //_Log.Info($"[SaveData] [{name}] MoveData is null.");
-#endif
+                    var name = ChaControl.chaFile?.parameter.fullname.Trim()
+                        ?? string.Empty;
+                    _Log.Info($"[SaveData] [{name}] MoveData is null.");
                 }
+#endif
             }
             #endregion
 
@@ -188,11 +189,8 @@ namespace IDHIPlugins
 #endregion
 
             #region private Methods
-            internal void Init(HSceneProc hSceneProc, CharacterType characterType)
+            internal void Init(HSceneProcTraverse hSceneProc, CharacterType characterType)
             {
-#if DEBUG
-                //_Log.Info($"[Init] Initialization for {characterType}");
-#endif
                 ChaType = characterType;
                 MoveData ??= new(ChaControl);
                 SetOriginalPosition();
@@ -242,24 +240,6 @@ namespace IDHIPlugins
                         $"Original position and found position mismatched " +
                         $"{OriginalPosition.Format()}!={FoundPosition.Format()}");
                 }
-#if DEBUG
-                //var lines = new StringBuilder();
-                // Get calling method name
-                //var callingMethod = Utilities.CallingMethod();
-
-                // Real original position AnimationLoader can change them when we get
-                // here
-                //lines.Append($"Name={nowHPointData} Original={OriginalPosition} " +
-                //    $"Set={nowHPointDataPos} ");
-                //lines.Append($"Last Move={LastMovePosition} Set={Vector3.zero}\n");
-                //lines.Append(
-                //    $"Current Position={FoundPosition.Format()}\n" +
-                //    $"Current Rotation={OriginalRotation.Format()}\n" +
-                //    $"          ALMove={ALMovement.Format()} Moved={Moved}\n" +
-                //    $"nowHpointDataPos={nowHPointDataPos.Format()}");
-                //_Log.Info($"[SetOriginalPosition] Calling [{callingMethod}] " +
-                //    $"ChaType={ChaType} {lines}");
-#endif
             }
 
             /// <summary>
@@ -303,7 +283,6 @@ namespace IDHIPlugins
                     //    $"              to={OriginalPosition.Format()}\n" +
                     //    $"nowHpointDataPos={_hPointPos.Format()}\n" +
                     //    $"   finalPosiiton={finalPosition.Format()}");
-
 #endif
                 }
             }

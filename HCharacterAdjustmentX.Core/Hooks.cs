@@ -27,7 +27,6 @@ namespace IDHIPlugins
         #region Properties
         internal static string AnimationKey { get; set; }
         internal static object HProcObject { get; set; }
-        internal static HSceneProc HPprocInstance { get; set; }
         internal static HSceneProcTraverse HProcTraverse { get; set; }
         #endregion
 
@@ -53,11 +52,6 @@ namespace IDHIPlugins
                 {
                     return;
                 }
-#if DEBUG
-                // Get calling method name
-                var callingMethod = Utilities.CallingMethod();
-                //_Log.Warning($"[{callingMethod}] Calling ChangeCategoryPostfix");
-#endif
                 PlugInUtils.SetOriginalPositionAll();
                 PlugInUtils.RecalcAdjustmentAll();
             }
@@ -72,31 +66,6 @@ namespace IDHIPlugins
                 {
                     return;
                 }
-#if DEBUG
-                // This hook is executed before HProcMonitor runs the first time
-                // HSceneProcMonin finish loading event to get nowHpointData the
-                // field needs to be initialized when null
-                //HProcTraverse ??= new(__instance);
-
-                // Get calling method name
-                //try
-                //{
-                    //var nowHPointDataPos = HProcTraverse.nowHpointDataPos;
-                    //var nowHPointData = HProcTraverse.nowHpointData;
-                    //_hPointName = nowHPointData;
-                    //_hPointPos = nowHPointDataPos;
-                    //var callingMethod = Utilities.CallingMethod();
-                    //_Log.Info($"[ChangeAnimatorPrefix] Calling [{callingMethod}] " +
-                    //    $"Position Name={nowHPointData} Position " +
-                    //    $"Point={nowHPointDataPos.Format()}");
-                //}
-                //catch
-                //{
-                //    var callingMethod = Utilities.CallingMethod();
-                //    _Log.Error($"[ChangeAnimatorPrefix] Calling [{callingMethod}] " +
-                //        $"ChangeAnimatorPrefix");
-                //}
-#endif
                 AnimationKey = "";
                 AnimationKey = PlugInUtils.GetAnimationKey(_nextAinmInfo);
                 PlugInUtils.SetALMove(_nextAinmInfo);
@@ -117,39 +86,6 @@ namespace IDHIPlugins
                 {
                     return;
                 }
-#if DEBUG
-                //try
-                //{
-                //    var nowHPointDataPos = HProcTraverse.nowHpointDataPos;
-                //    var nowHPointData = HProcTraverse.nowHpointData;
-                //    nowHPointData ??= "null";
-                //    if (nowHPointDataPos == null)
-                //    {
-                //        nowHPointDataPos = new Vector3(-1, -1, -1);
-                //    }
-
-                //    var callingMethod = Utilities.CallingMethod();
-                //    _Log.Info($"[ChangeAnimatorPostfix] Calling [{callingMethod}] " +
-                //        $"Position Name={nowHPointData} Position " +
-                //        $"Point={nowHPointDataPos}");
-                //}
-                //catch
-                //{
-#if KKS
-                //    var nowHPointDataPos = HPointInfo.InitialPosition;
-                //    var nowHPointData = HPointInfo.InitialPositionName;
-                    // Get calling method name
-                //    var callingMethod = Utilities.CallingMethod();
-                //    _Log.Error($"[ChangeAnimatorPostfix] Calling [{callingMethod}] " +
-                //        $"Error: Position Name={nowHPointData} Position " +
-                //        $"Point={nowHPointDataPos}");
-#else
-                //    var callingMethod = Utilities.CallingMethod();
-                //    _Log.Warning($"[{callingMethod}] Calling ChangeAnimatorPrefix");
-
-#endif
-                //}
-#endif
                 AnimationKey = PlugInUtils.GetAnimationKey(_nextAinmInfo);
                 PlugInUtils.SetMode(_nextAinmInfo.mode);
                 PlugInUtils.SetALMove(_nextAinmInfo);
