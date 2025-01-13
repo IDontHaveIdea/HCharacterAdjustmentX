@@ -137,9 +137,9 @@ namespace IDHIPlugins
 #if DEBUG
             //_Log.Warning($"[ToggleGroupGuideObject] Group Guide set to={state}");
 #endif
-            HPprocInstance.sprite.axis.tglDraw.isOn = state;
-            HPprocInstance.sprite.MoveAxisDraw(HPprocInstance.sprite.axis.tglDraw.isOn);
-            HPprocInstance.guideObject.gameObject.SetActive(state);
+            HProcTraverse.sprite.axis.tglDraw.isOn = state;
+            HProcTraverse.sprite.MoveAxisDraw(HProcTraverse.sprite.axis.tglDraw.isOn);
+            HProcTraverse.guideObject.gameObject.SetActive(state);
         }
 
         /// <summary>
