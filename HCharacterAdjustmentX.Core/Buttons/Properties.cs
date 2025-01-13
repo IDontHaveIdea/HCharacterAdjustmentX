@@ -55,10 +55,12 @@ namespace IDHIPlugins
             { new(       "Forward", MoveType.FORWARD, ActionType.POSITION) },
             { new(          "Back", MoveType.BACK, ActionType.POSITION) },
             { new(    "Reset Move", MoveType.RESETPOSITION, ActionType.POSITION, doubleWide: true) },
-            { new(        "Rot. +", MoveType.POSITIVEROTATION, ActionType.ROTATION) },
-            { new(        "Rot. -", MoveType.NEGATIVEROTATION, ActionType.ROTATION) },
-            { new(          "Axis", MoveType.AXIS, ActionType.AXIS, doubleWide: true) },
-            { new("Reset Rotation", MoveType.RESETROTATION, ActionType.ROTATION, doubleWide: true) },
+#if DEBUG
+            //{ new(        "Rot. +", MoveType.POSITIVEROTATION, ActionType.ROTATION) },
+            //{ new(        "Rot. -", MoveType.NEGATIVEROTATION, ActionType.ROTATION) },
+            //{ new(          "Axis", MoveType.AXIS, ActionType.AXIS, doubleWide: true) },
+            //{ new("Reset Rotation", MoveType.RESETROTATION, ActionType.ROTATION, doubleWide: true) },
+#endif
             { new(          "Save", MoveType.SAVE, ActionType.POSITION) },
             { new(          "Load", MoveType.LOAD, ActionType.POSITION) }
         };
